@@ -1,0 +1,14 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{title}} - DoubleDart</title>
+        {% else %}
+        <title>Welcome to DoubleDart</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>DoubleDart: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
