@@ -1,14 +1,30 @@
-<html>
-    <head>
-        {% if title %}
-        <title>{{title}} - DoubleDart</title>
-        {% else %}
-        <title>Welcome to DoubleDart</title>
-        {% endif %}
-    </head>
-    <body>
-        <div>DoubleDart: <a href="/index">Home</a></div>
-        <hr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <title>Double Dart</title>
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/index.css')}}">
+  <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+
+</head>
+
+<body>
+  <div class="header page-header">
+    <img style="width: 40%" class="logo" src="">
+    <div style="width: 60%" class="text header-text">Double Dart</div>
+  </div>
+  <div class="float-clear"></div>
         {% block content %}{% endblock %}
     </body>
+
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+   crossorigin=""/>
+
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+   crossorigin=""></script>
+
+  <script src="{{url_for('static', filename='js/main.js')}}"></script>
 </html>

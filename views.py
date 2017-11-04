@@ -5,14 +5,22 @@ from flask_server import app
 @app.route('/index')
 def index():
     user = {'nickname': 'Tom'}
-    posts = [
+    darters = [
         {
-            'author': {'nickname': 'Sahil'},
-            'body': 'Beautiful day at UIUC!'
+            'name': 'Sahil',
+            'mapid': "mapid2"
         },
         {
-            'author': {'nickname': 'David'},
-            'body': 'The Avengers movie was so cool'
+            'name': 'David',
+            'mapid': "mapid3"
+        },
+        {
+            'name': 'Tom',
+            'mapid': "mapid4"
+        },
+        {
+            'name': 'Angelo',
+            'mapid': "mapid5"
         }
     ]
-    return render_template('index.html', title='Home', user = user, posts=posts);
+    return render_template('index.html', title='Home', user=user, darters=darters);

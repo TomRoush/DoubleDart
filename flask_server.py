@@ -13,4 +13,4 @@ from views import *
 #     return 'Received !' # response to your request
 
 if __name__=='__main__':
-    app.run()
+    app.run(debug=True)

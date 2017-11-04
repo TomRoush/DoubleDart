@@ -1,8 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Hi, {{user.nickname}}!</h1>
+  <div class="header">
+    <div style="width: 80%" class="text section-text">Recent Routes</div>
+    <div style="width: 20%" class="add-route">Add Route</div>
+  </div>
+  <div class="float-clear"></div>
 
-    {% for post in posts %}
-    <div><p>{{post.author.nickname}} says:<b>{{post.body}}</b></p></div>
+  <div class="map-holder">
+    <div style="height: 200px;" id="mapid"></div>
+  </div>
+
+  <div class="header">
+    <div style="width: 80%" class="text section-text">Most Matched Darters</div>
+    <div style="width: 20%" class="add-route"></div>
+  </div>
+  <div class="float-clear"></div>
+
+  <div class="clients-holder">
+      {% for darter in darters %}
+    <div class="header client">
+      <div class="client-name">{{darter.name}}</div>
+    </div>
+    <div class="map-holder">
+      <div style="height: 200px;" id="{{darter.mapid}}"></div>
+    </div>
+    <div style="padding-top: 20px;" class="float-clear"></div>
     {% endfor %}
+
+  </div>
+
 {% endblock %}
