@@ -1,11 +1,80 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="utf8">
+  <title>Double Dart</title>
+
   <link rel="stylesheet" type="text/css" href="css/index.css">
-  <script src="js/jquery.min.js"></script> 
-  <script src="js/main.js"></script> 
+  <script src="js/jquery.min.js"></script>
+
 </head>
 
 <body>
-  <h1>Double Dart</h1>
+  <div class="header page-header">
+    <img style="width: 40%" class="logo" src="">
+    <div style="width: 60%" class="text header-text">Double Dart</div>
+  </div>
+  <div class="float-clear"></div>
+
+  <div class="header">
+    <div style="width: 80%" class="text section-text">Recent Routes</div>
+    <div style="width: 20%" class="add-route">Add Route</div>
+  </div>
+  <div class="float-clear"></div>
+
+  <div class="map-holder">
+    <div style="height: 200px;" id="mapid"></div>
+  </div>
+
+  <div class="header">
+    <div style="width: 80%" class="text section-text">Most Matched Darters</div>
+    <div style="width: 20%" class="add-route"></div>
+  </div>
+  <div class="float-clear"></div>
+
+  <div class="clients-holder">
+    <div class="header client">
+      <div class="client-name">Sahil</div>
+    </div>
+    <div class="map-holder">
+      <div style="height: 200px;" id="mapid2"></div>
+    </div>
+    <div style="padding-top: 20px;" class="float-clear"></div>
+
+    <div class="header client">
+      <div class="client-name">David</div>
+    </div>
+    <div class="map-holder">
+      <div style="height: 200px;" id="mapid3"></div>
+    </div>
+    <div style="padding-top: 20px;" class="float-clear"></div>
+
+    <div class="header client">
+      <div class="client-name">Tom</div>
+    </div>
+    <div class="map-holder">
+      <div style="height: 200px;" id="mapid4"></div>
+    </div>
+    <div style="padding-top: 20px;" class="float-clear"></div>
+
+    <div class="header client">
+      <div class="client-name">Angelo</div>
+    </div>
+    <div class="map-holder">
+      <div style="height: 200px;" id="mapid5"></div>
+    </div>
+    <div style="padding-top: 20px;" class="float-clear"></div>
+  </div>
+
 </body>
+
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+   crossorigin=""/>
+   
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+   crossorigin=""></script>
+
+  <script src="js/main.js"></script>
 </html>
