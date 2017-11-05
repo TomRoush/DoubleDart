@@ -138,6 +138,11 @@ def handle_request(json_data):
         'name': gpx_files[top5[4]],
         'coords': paths[top5[4]]
         },
+	# Return the user parsed request to the client as well, for comparison
+	5: {
+	'name': user,
+	'coords': user_path
+	}
     }
     return json.dumps(j)
 
