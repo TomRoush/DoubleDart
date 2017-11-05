@@ -1,9 +1,19 @@
+body * {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
 .header-text {
   font-size: 50px;
 }
 
 .section-text {
   font-size: 30px;
+}
+
+.leftpadtext {
+  display: flex;
+  align-items: center;
+  padding-left: 5%;
 }
 
 .text {
@@ -13,11 +23,7 @@
   align-items: center;
 }
 
-.page-header * {
-  height: 100px;
-}
-
-.header * {
+.hfloat {
   margin: 20px 0px;
   float: left;
 }
@@ -27,11 +33,20 @@
 }
 
 .map-holder {
-  margin: 0px 10%;
+  margin: 10px 10%;
 }
 
 .client-name {
   width: 40%;
   text-align: center;
   font-size: 25px;
+}
+
+.pagetopheader {
+   background: #86ff86;
+}
+
+.sectionheader {
+  background: #eafeea;
+  border-bottom: 2px solid #4c7d4c;
 }

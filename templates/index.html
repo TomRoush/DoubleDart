@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="header">
-    <div style="width: 80%" class="text section-text">Recent Routes</div>
-    <div style="width: 20%" class="add-route">Add Route</div>
+  <div class="header sectionheader">
+    <div style="width: 50%" class="hfloat leftpadtext section-text">Recent Routes</div>
+    <div style="width: 20%" class="hfloat add-route"></div>
+    <div class="float-clear"></div>
   </div>
   <div class="float-clear"></div>
 
@@ -10,28 +11,31 @@
     <div style="height: 200px;" id="mapid"></div>
   </div>
 
-  <div class="header">
-    <div style="width: 80%" class="text section-text">Most Matched Darters</div>
-    <div style="width: 20%" class="add-route"></div>
+  <div class="header sectionheader">
+    <div style="width: 50%" class="hfloat leftpadtext section-text">Most Matched Darters</div>
+    <div style="width: 20%" class="hfloat add-route"></div>
+    <div class="float-clear"></div>
   </div>
   <div class="float-clear"></div>
 
-  <form action="/results" method="post" role="form">
+  <form style="text-align: center;" action="/results" method="post" role="form">
      <h2>Please Upload Your Data</h2>
      <input id="nameField" type="text" name="username" placeholder="Username" required autofocus>
      <input id="gpxField" type="file" name="gpx" class="form-control" placeholder="GPX Upload" required>
 
      <button type="button" onclick="upload('#post{{post.id}}','#upload{{post.id}}', '#loading{{post.id}}')">Submit</button>
  </form>
-
+<!--
 <p><strong><span id="post{{post.id}}">{{post.body}}</span></string></p>
 <div span id="upload{{post.id}}"><a href="javascript:upload('#post{{post.id}}','#upload{{post.id}}', '#loading{{post.id}}');">Upload</a></span></div>
+-->
+
 <img id="loading{{post.id}}" style="display: none" src="/static/img/loading.gif"
 
   <div class="clients-holder">
       {% for darter in darters %}
     <div class="header client">
-      <div class="client-name" id="{{darter.mapid}}name">{{darter.name}}</div>
+      <div class="hfloat client-name" id="{{darter.mapid}}name">{{darter.name}}</div>
     </div>
     <div class="map-holder">
       <div style="height: 200px;" id="{{darter.mapid}}"></div>

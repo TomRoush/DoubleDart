@@ -7,13 +7,17 @@
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/index.css')}}">
   <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
   <script src="{{url_for('static', filename='js/script.js')}}"></script>
-
 </head>
 
 <body>
-  <div class="header page-header">
-    <img style="width: 40%" class="logo" src="">
-    <div style="width: 60%" class="text header-text">Double Dart</div>
+  <div class="header page-header pagetopheader">
+    <div style="width: 40%; margin: 0;" class="hfloat logo">
+      <div style="margin: auto; width: 50%;">
+        <img style="height: 150px; display: block; margin: 0 auto;" src="{{ url_for('static', filename='img/logo.png') }}">
+      </div>
+    </div>
+    <div style="height: 100px; width: 55%" class="hfloat leftpadtext header-text">Double Dart</div>
+    <div class="float-clear"></div>
   </div>
   <div class="float-clear"></div>
         {% block content %}{% endblock %}
