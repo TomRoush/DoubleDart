@@ -1,5 +1,7 @@
 from flask import render_template, request, jsonify
 from flask_server import app
+import json
+#from . import model
 
 @app.route('/')
 @app.route('/index')
@@ -38,7 +40,17 @@ def getResults():
     user = request.form['user'];
     gpx = request.form['gpx'];
 
+    f = open("gpx_data/20150909_185946.gpx",'r')
+    gpx = f.read()
+
+    j = json.dumps([{
+        user: user,
+        gpx: gpx        
+    }]);
+    #print(j);
+    
     # Run the model and get some results
+    #handle_request(j)
 
     # Return the results
     return jsonify({'user':user,'gpx':gpx});
