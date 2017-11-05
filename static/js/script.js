@@ -20,18 +20,16 @@
     // })
 
     function upload(sourceId, destId, loadingId) {
-        console.log(sourceId + ", " + destId + ", " + loadingId);
-        console.log($(sourceId) + ", " + $("#nameField").val());
+        // console.log(sourceId + ", " + destId + ", " + loadingId);
+        // console.log($(sourceId) + ", " + $("#nameField").val());
         $(destId).hide();
         $(loadingId).show();
         $.post('/results', {
-            user: $("#nameField").val()
-            // sourceLang: sourceLang,
-            // destLang: destLang
+            user: $("#nameField").val(),
+            gpx: $("#gpxField").val()
         }).done(function(up) {
-            console.log(up);
             $(loadingId).hide();
-            $(destId).text(up);
+            $(destId).text(up['user'] + up['gpx']);
             $(destId).show();
         }).fail(function() {
             $(destId).text("{{ _('Error: Could not contact server.') }}");

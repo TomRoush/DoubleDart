@@ -32,9 +32,9 @@ def index():
 @app.route('/results', methods=['POST'])
 def getResults():
     user = request.form['user'];
+    gpx = request.form['gpx'];
 
-    # gpx = request.form['gpx'];
-    # user = 'Angelo';
-    console.log(user);
-    gpx = 'Cool data n stuff';
+    # Run the model and get some results
+
+    # Return the results
     return jsonify({'user':user,'gpx':gpx});
