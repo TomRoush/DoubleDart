@@ -21,6 +21,10 @@ def index():
         {
             'name': 'Angelo',
             'mapid': "mapid5"
+        },
+        {
+            'name': 'The Fifth',
+            'mapid': "mapid6"
         }
     ]
     post = {

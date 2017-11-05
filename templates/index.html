@@ -31,7 +31,7 @@
   <div class="clients-holder">
       {% for darter in darters %}
     <div class="header client">
-      <div class="client-name">{{darter.name}}</div>
+      <div class="client-name" id="{{darter.mapid}}name">{{darter.name}}</div>
     </div>
     <div class="map-holder">
       <div style="height: 200px;" id="{{darter.mapid}}"></div>

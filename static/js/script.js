@@ -25,6 +25,10 @@ function graphClient(up) {
         0: {
             'name': 'Angelou',
             'coords': [[40.3, .05], [40.4,.04]]
+        },
+        1: {
+            'name': 'Tommoth',
+            'coords': [[40.4, .06], [40.2,.03]]
         }
     }
     console.log("UP: ");
@@ -34,10 +38,14 @@ function graphClient(up) {
     // Assumes client is 0 indexed
     for (var client in up) {
         var latlngs = up[client]['coords'];
-        var mymap = gen_map('mapid' + (parseInt(client) + 2));
+        var mapid = 'mapid' + (parseInt(client) + 2);
+        
+        var mymap = gen_map(mapid);
         var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
         mymap.fitBounds(polyline.getBounds());
         L_maps.push(mymap);
+
+        $("#" + mapid + "name").html(up[client]['name'])
     }
 }
 
@@ -102,9 +110,11 @@ $(function() {
   ];*/
   var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
   mymap.fitBounds(polyline.getBounds());
-
+/*
   L_maps.push(gen_map('mapid2'));
   L_maps.push(gen_map('mapid3'));
   L_maps.push(gen_map('mapid4'));
   L_maps.push(gen_map('mapid5'));
+  L_maps.push(gen_map('mapid6'));
+*/
 })
