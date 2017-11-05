@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request, jsonify
 from flask_server import app
 
 @app.route('/')
@@ -23,4 +23,18 @@ def index():
             'mapid': "mapid5"
         }
     ]
-    return render_template('index.html', title='Home', user=user, darters=darters);
+    post = {
+        'id': 7,
+        'body':'Greg'
+    }
+    return render_template('index.html', title='Home', user=user, darters=darters, post=post);
+
+@app.route('/results', methods=['POST'])
+def getResults():
+    user = request.form['user'];
+
+    # gpx = request.form['gpx'];
+    # user = 'Angelo';
+    console.log(user);
+    gpx = 'Cool data n stuff';
+    return jsonify({'user':user,'gpx':gpx});
