@@ -1,7 +1,7 @@
 from flask import render_template, request, jsonify
 from flask_server import app
 import json
-#from . import model
+from . import model
 
 @app.route('/')
 @app.route('/index')
@@ -50,7 +50,4 @@ def getResults():
     #print(j);
     
     # Run the model and get some results
-    #handle_request(j)
-
-    # Return the results
-    return jsonify({'user':user,'gpx':gpx});
+    return model.handle_request(j)
