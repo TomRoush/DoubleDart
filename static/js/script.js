@@ -1,37 +1,46 @@
 function upload(sourceId, destId, loadingId) {
-    // console.log(sourceId + ", " + destId + ", " + loadingId);
-    // console.log($(sourceId) + ", " + $("#nameField").val());
     $(destId).hide();
     $(loadingId).show();
-    $.post('/results', {
-        user: $("#nameField").val(),
-        gpx: $("#gpxField").val()
-    }).done(function(up) {
-        $(loadingId).hide();
-        $(destId).text(up['user'] + up['gpx']);
-        $(destId).show();
-        graphClient(up);
-    }).fail(function() {
-        $(destId).text("{{ _('Error: Could not contact server.') }}");
-        $(loadingId).hide();
-        $(destId).show();
-        graphClient(up);
-    });
+    if (!window.FileReader) {
+        return alert('FileReader not supported');
+    }
+    var file = document.getElementById('gpxField');
+    if (file.files.length) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $.post('/results', {
+                user: $("#nameField").val(),
+                gpx: reader.result
+            }).done(function(up) {
+                $(loadingId).hide();
+                $(destId).text(up['user'] + up['gpx']);
+                $(destId).show();
+                graphClient(JSON.parse(up));
+            }).fail(function() {
+                $(destId).text("{{ _('Error: Could not contact server.') }}");
+                $(loadingId).hide();
+                $(destId).show();
+                // graphClient(up);
+            });
+        }
+        reader.readAsText(file.files[0]);
+    }
 }
 
 function graphClient(up) {
     // Temporary override of file for testing purposes
-    up = {
-        0: {
-            'name': 'Angelou',
-            'coords': [[40.3, .05], [40.4,.04]]
-        },
-        1: {
-            'name': 'Tommoth',
-            'coords': [[40.4, .06], [40.2,.03]]
-        }
-    }
-    console.log("UP: ");
+    // up = {
+    //     0: {
+    //         'name': 'Angelou',
+    //         'coords': [[40.3, .05], [40.4,.04]]
+    //     },
+    //     1: {
+    //         'name': 'Tommoth',
+    //         'coords': [[40.4, .06], [40.2,.03]]
+    //     }
+    // }
+    // console.log("UP: ");
+
     console.log(up);
 
     resetMaps();
@@ -39,7 +48,7 @@ function graphClient(up) {
     for (var client in up) {
         var latlngs = up[client]['coords'];
         var mapid = 'mapid' + (parseInt(client) + 2);
-        
+
         var mymap = gen_map(mapid);
         var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
         mymap.fitBounds(polyline.getBounds());
@@ -72,7 +81,7 @@ function gen_map(mapid) {
 $(function() {
   // Map instantiation
   var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-  
+
   // Map street view render
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -81,7 +90,7 @@ $(function() {
       accessToken: 'pk.eyJ1IjoiZG91YmxlZGFydCIsImEiOiJjajlrdzM4MmQxcDhuMndwZzV1NjJybzczIn0.CYNCPYhZTYv2WLvuEreM5A'
   }).addTo(mymap);
 
-  // Map Marker example 
+  // Map Marker example
   var marker = L.marker([51.51, -0.1]).addTo(mymap);
 
   marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();

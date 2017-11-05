@@ -16,11 +16,11 @@ from glob import glob
 def parse_data():
     gpx_files = []
     vectors = []
-    
+
     for file in glob("gpx_data/*.gpx"):
         gpx_file = gpxpy.parse(open(file))
         gpx_files.append(os.path.basename(file))
-        
+
         for track in gpx_file.tracks:
             vector = [(point.latitude, point.longitude) for segment in track.segments for point in segment.points]
             vectors.append(vector)
@@ -34,15 +34,15 @@ def parse_request_data(json_data):
     for json_object in json.loads(json_data):
         with open("gpx_data/{}.gpx".format(json_object['user']), 'w') as f:
             f.write(json_object['gpx'])
-            
+
         gpx_file = gpxpy.parse(json_object['gpx'])
-        
+
         for track in gpx_file.tracks:
             path = [(point.latitude, point.longitude) for segment in track.segments for point in segment.points]
             paths.append(path)
-            
+
         break # request should only have 1 person
-    
+
     return paths, json_object['user']
 
 
@@ -99,23 +99,23 @@ def score(paths):
                 score_matrix[j][i] = score
 
     score_matrix=np.array(score_matrix).reshape(len(paths), len(paths))
-    return score_matrix            
+    return score_matrix
 
 
 # In[153]:
 
 # Main entry point
 def handle_request(json_data):
-    user_path, user = parse_request_data(json)
+    user_path, user = parse_request_data(json_data)
     paths, gpx_files = parse_data()
-    
+
     score_matrix= score(paths)
     # Get the row INDICES of the score matrix that corresponds to the user requested, and pull the top 5 scores
     top5 = score_matrix[gpx_files.index("%s.gpx" % user)].argsort()[:5]
-    
+
     # results: filenames, a.k.a. the users which are selected as the top 5 matches
-    results = [gpx_files[top] for top in tops]
-   
+    results = [gpx_files[top] for top in top5]
+
     # return a JSON object as response
     j = {
         0: {
@@ -133,11 +133,11 @@ def handle_request(json_data):
         3: {
         'name': gpx_files[top5[3]],
         'coords': paths[top5[3]]
-        }, 
+        },
         4: {
         'name': gpx_files[top5[4]],
         'coords': paths[top5[4]]
-        }, 
+        },
     }
     return json.dumps(j)
 

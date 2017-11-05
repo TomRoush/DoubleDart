@@ -21,15 +21,12 @@
   <form style="text-align: center;" action="/results" method="post" role="form">
      <h2>Please Upload Your Data</h2>
      <input id="nameField" type="text" name="username" placeholder="Username" required autofocus>
-     <input id="gpxField" type="file" name="gpx" class="form-control" placeholder="GPX Upload" required>
+     <input id="gpxField" type="file" name="gpx" class="form-control" accept=".gpx, .txt" placeholder="GPX Upload" required>
 
      <button type="button" onclick="upload('#post{{post.id}}','#upload{{post.id}}', '#loading{{post.id}}')">Submit</button>
  </form>
-<!--
-<p><strong><span id="post{{post.id}}">{{post.body}}</span></string></p>
-<div span id="upload{{post.id}}"><a href="javascript:upload('#post{{post.id}}','#upload{{post.id}}', '#loading{{post.id}}');">Upload</a></span></div>
--->
 
+<span id="post{{post.id}}"></span>
 <img id="loading{{post.id}}" style="display: none" src="/static/img/loading.gif"
 
   <div class="clients-holder">
