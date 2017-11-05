@@ -27,6 +27,9 @@ function upload(sourceId, destId, loadingId) {
     }
 }
 
+var self_map = undefined;
+var L_maps = []
+
 function graphClient(up) {
     // Temporary override of file for testing purposes
     // up = {
@@ -56,9 +59,13 @@ function graphClient(up) {
 
         $("#" + mapid + "name").html(up[client]['name'])
     }
-}
 
-var L_maps = []
+    self_map.remove();
+    self_map = gen_map("mapid");
+    var latlngs = up['5']['coords'];
+    var polyline = L.polyline(latlngs, {color: 'red'}).addTo(self_map);
+    mymap.fitBounds(polyline.getBounds());
+}
 
 function resetMaps() {
     L_maps.forEach(function(map) {
@@ -81,6 +88,7 @@ function gen_map(mapid) {
 $(function() {
   // Map instantiation
   var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+  self_map = mymap;
 
   // Map street view render
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
